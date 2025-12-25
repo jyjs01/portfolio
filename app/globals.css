@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@layer base {
+  html, body { cursor: default; }
+}
+
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
