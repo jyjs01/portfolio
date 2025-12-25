@@ -63,7 +63,7 @@ export default function ProjectsSection() {
                       ))}
                     </div>
 
-                    <div className="mt-8 flex items-center gap-3 transition-transform duration-300 group-hover:translate-y-[-1px] motion-reduce:transition-none">
+                    <div className="mt-8 flex items-center gap-3 transition-transform duration-300 group-hover:-translate-y-px motion-reduce:transition-none">
                       <Link href={p.detailHref}>
                         <Button>자세히 보기 →</Button>
                       </Link>
@@ -76,9 +76,9 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  <div className="relative min-h-[260px] overflow-hidden bg-white/40">
+                  <div className="relative min-h-65 overflow-hidden bg-white/40">
                     <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none">
-                      <div className="absolute inset-0 bg-gradient-to-tr from-black/0 via-black/0 to-black/10" />
+                      <div className="absolute inset-0 bg-linear-to-tr from-black/0 via-black/0 to-black/10" />
                     </div>
 
                     <Image
