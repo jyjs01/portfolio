@@ -5,53 +5,19 @@ import Container from "@/src/components/ui/Container";
 import Card from "@/src/components/ui/Card";
 import Badge from "@/src/components/ui/Badge";
 import Button from "@/src/components/ui/Button";
-
-type Project = {
-  title: string;
-  desc: string;
-  tags: string[];
-  imageSrc: string;
-  detailHref: string;
-  githubHref: string;
-  tone?: "mint" | "cream" | "mint2";
-};
-
-const projects: Project[] = [
-  {
-    title: "이커머스 쇼핑몰 프로젝트",
-    desc:
-      "React와 TypeScript를 활용한 반응형 쇼핑몰 웹사이트입니다. 상품 목록, 장바구니, 결제 기능을 구현했으며 사용자 친화적인 UI/UX를 제공합니다.",
-    tags: ["React", "TypeScript", "Redux", "Tailwind CSS", "REST API"],
-    imageSrc: "/projects/project-1.png",
-    detailHref: "/projects/1",
-    githubHref: "https://github.com/developer",
-    tone: "mint",
-  },
-  {
-    title: "날씨 정보 대시보드",
-    desc:
-      "실시간 날씨 API를 연동하여 주요 도시의 날씨 정보를 제공하는 대시보드입니다. 차트 시각화와 위치 기반 기능, 5일 예보를 구현했습니다.",
-    tags: ["React", "Chart.js", "Weather API", "Geolocation", "CSS3"],
-    imageSrc: "/projects/project-2.png",
-    detailHref: "/projects/2",
-    githubHref: "https://github.com/developer",
-    tone: "cream",
-  },
-  {
-    title: "할 일 관리 애플리케이션",
-    desc:
-      "드래그 앤 드롭으로 작업 순서를 변경하고, 카테고리/우선순위를 관리할 수 있는 투두 앱입니다. LocalStorage 영속성과 다크모드를 지원합니다.",
-    tags: ["React", "DnD Kit", "LocalStorage", "Dark Mode", "Responsive"],
-    imageSrc: "/projects/project-3.png",
-    detailHref: "/projects/3",
-    githubHref: "https://github.com/developer",
-    tone: "mint2",
-  },
-];
+import { projects } from "@/src/data/Projects";
+import type { Project } from "@/src/types/Project";
 
 function toneClass(tone?: Project["tone"]) {
-  if (tone === "cream") return "bg-amber-50";
-  return "bg-emerald-50";
+  switch (tone) {
+    case "cream":
+      return "bg-gradient-to-br from-amber-50 to-white";
+    case "mint2":
+      return "bg-gradient-to-br from-violet-50 to-white";
+    case "mint":
+    default:
+      return "bg-gradient-to-br from-slate-50 via-sky-50 to-emerald-50";
+  }
 }
 
 export default function ProjectsSection() {
@@ -66,10 +32,23 @@ export default function ProjectsSection() {
         <div className="mt-12 space-y-10">
           {projects.map((p, idx) => {
             const reverse = idx % 2 === 1;
+
             return (
-              <Card key={p.title} className={`overflow-hidden ${toneClass(p.tone)}`}>
-                <div className={`grid min-h-90 md:grid-cols-2 ${reverse ? "md:[&>*:first-child]:order-2" : ""}`}>
-                  {/* Text */}
+              <Card
+                key={p.title}
+                className={[
+                  "group overflow-hidden border-slate-200",
+                  "transition-all duration-300 motion-reduce:transition-none",
+                  "hover:-translate-y-1 hover:shadow-lg hover:border-slate-300",
+                  toneClass(p.tone),
+                ].join(" ")}
+              >
+                <div
+                  className={[
+                    "grid min-h-90 md:grid-cols-2",
+                    reverse ? "md:[&>*:first-child]:order-2" : "",
+                  ].join(" ")}
+                >
                   <div className="p-8 md:p-10">
                     <div className="inline-flex rounded-full bg-white/70 px-4 py-2 text-xs font-semibold text-slate-700">
                       프로젝트 {idx + 1}
@@ -84,7 +63,7 @@ export default function ProjectsSection() {
                       ))}
                     </div>
 
-                    <div className="mt-8 flex items-center gap-3">
+                    <div className="mt-8 flex items-center gap-3 transition-transform duration-300 group-hover:translate-y-[-1px] motion-reduce:transition-none">
                       <Link href={p.detailHref}>
                         <Button>자세히 보기 →</Button>
                       </Link>
@@ -97,13 +76,16 @@ export default function ProjectsSection() {
                     </div>
                   </div>
 
-                  {/* Image */}
-                  <div className="relative min-h-65 bg-white/40">
+                  <div className="relative min-h-[260px] overflow-hidden bg-white/40">
+                    <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 motion-reduce:transition-none">
+                      <div className="absolute inset-0 bg-gradient-to-tr from-black/0 via-black/0 to-black/10" />
+                    </div>
+
                     <Image
                       src={p.imageSrc}
                       alt={p.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 motion-reduce:transition-none group-hover:scale-[1.04]"
                       sizes="(min-width: 768px) 50vw, 100vw"
                       priority={idx === 0}
                     />
