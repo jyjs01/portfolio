@@ -1,41 +1,45 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import axios from "axios";
 import Container from "@/src/components/ui/Container";
 import Card from "@/src/components/ui/Card";
 import Input from "@/src/components/ui/Input";
 import Textarea from "@/src/components/ui/Textarea";
 import Button from "@/src/components/ui/Button";
-import { Mail, Github, Linkedin, Clock } from "lucide-react";
-
-type FormState = {
-  name: string;
-  email: string;
-  message: string;
-};
+import { Mail, Github, Clock } from "lucide-react";
+import type { FormState, Status } from "@/src/types/Form";
 
 export default function ContactSection() {
   const [form, setForm] = useState<FormState>({ name: "", email: "", message: "" });
-  const [submitting, setSubmitting] = useState(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [status, setStatus] = useState<Status>("idle");
 
   const canSubmit = useMemo(() => {
     const okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email);
     return form.name.trim().length >= 2 && okEmail && form.message.trim().length >= 5;
   }, [form]);
 
-  const onChange = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm((prev) => ({ ...prev, [key]: e.target.value }));
+  const onChange = (key: keyof FormState) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setStatus("idle");
+      setForm((prev) => ({ ...prev, [key]: e.target.value }));
+    };
 
+  // 메일 전송
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!canSubmit) return;
+    if (!canSubmit || submitting) return;
 
     setSubmitting(true);
+    setStatus("idle");
+
     try {
-      // ✅ 지금은 데모: mailto로 연결
-      const subject = encodeURIComponent(`[포트폴리오 문의] ${form.name}`);
-      const body = encodeURIComponent(`이름: ${form.name}\n이메일: ${form.email}\n\n${form.message}`);
-      window.location.href = `mailto:developer@email.com?subject=${subject}&body=${body}`;
+      await axios.post("/api/contact", form);
+
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setStatus("error");
     } finally {
       setSubmitting(false);
     }
@@ -50,7 +54,6 @@ export default function ContactSection() {
         </div>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
-          {/* Left */}
           <div className="space-y-4">
             <Card className="p-6">
               <h3 className="text-lg font-bold text-slate-900">연락처 정보</h3>
@@ -62,7 +65,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500">이메일</p>
-                    <p className="text-sm font-semibold text-slate-900">developer@email.com</p>
+                    <p className="text-sm font-semibold text-slate-900">duawodud12@naver.com</p>
                   </div>
                 </div>
 
@@ -72,17 +75,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500">GitHub</p>
-                    <p className="text-sm font-semibold text-slate-900">github.com/developer</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-sm">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
-                    <Linkedin className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500">LinkedIn</p>
-                    <p className="text-sm font-semibold text-slate-900">linkedin.com/in/developer</p>
+                    <p className="text-sm font-semibold text-slate-900">https://github.com/jyjs01</p>
                   </div>
                 </div>
               </div>
@@ -100,7 +93,6 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right */}
           <Card className="p-6">
             <h3 className="text-lg font-bold text-slate-900">메시지 보내기</h3>
 
@@ -116,8 +108,15 @@ export default function ContactSection() {
                 helperRight={`${form.message.length}/500`}
               />
 
+              {status === "success" && (
+                <p className="text-sm font-medium text-emerald-600">전송이 완료되었습니다.</p>
+              )}
+              {status === "error" && (
+                <p className="text-sm font-medium text-rose-600">전송에 실패했습니다. 잠시 후 다시 시도해주세요.</p>
+              )}
+
               <Button type="submit" className="w-full" disabled={!canSubmit || submitting}>
-                메시지 보내기
+                {submitting ? "전송 중..." : "메시지 보내기"}
               </Button>
             </form>
           </Card>

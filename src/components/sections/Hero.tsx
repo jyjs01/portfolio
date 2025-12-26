@@ -1,13 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Mail, Github, MapPin, ArrowDown } from "lucide-react";
 import Button from "@/src/components/ui/Button";
 import Container from "@/src/components/ui/Container";
 
 export default function Hero() {
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      setShowArrow(window.scrollY <= 10);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
   return (
-    <section className="relative min-h-[92vh] bg-white">
+    <section className="relative min-h-screen bg-white">
       <Container className="flex min-h-[92vh] flex-col items-center justify-center py-16 text-center">
-        {/* Avatar */}
         <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-slate-900 text-lg font-bold text-white">
           JY
         </div>
@@ -24,7 +38,6 @@ export default function Hero() {
           새로운 기술을 배우고 적용하는 것을 즐기며, 끊임없이 성장하는 개발자가 되고자 합니다.
         </p>
 
-        {/* Contact Row */}
         <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
           <div className="inline-flex items-center gap-2">
             <Mail className="h-4 w-4" />
@@ -40,7 +53,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* CTA Buttons */}
         <div className="mt-10 flex items-center justify-center gap-3">
           <Link href="#projects">
             <Button>프로젝트 보기</Button>
@@ -51,12 +63,14 @@ export default function Hero() {
         </div>
       </Container>
 
-      {/* Down Arrow */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400">
-        <Link href="#skills" aria-label="Scroll to skills">
-          <ArrowDown className="h-5 w-5" />
-        </Link>
-      </div>
+      {showArrow && (
+        <div className="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 text-slate-400">
+          <ArrowDown
+            className="h-15 w-10 animate-bounce motion-reduce:animate-none"
+            style={{ animationDuration: "0.65s" }}
+          />
+        </div>
+      )}
     </section>
   );
 }
