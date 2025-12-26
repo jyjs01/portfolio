@@ -1,9 +1,9 @@
 export type Project = {
+  id: string;
   title: string;
   desc: string;
   tags: string[];
   imageSrc: string;
-  detailHref: string;
   githubHref: string;
-  tone?: "mint" | "cream" | "mint2";
+  tone?: "1" | "2" | "3";
 };

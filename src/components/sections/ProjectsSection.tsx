@@ -6,19 +6,7 @@ import Card from "@/src/components/ui/Card";
 import Badge from "@/src/components/ui/Badge";
 import Button from "@/src/components/ui/Button";
 import { projects } from "@/src/data/Projects";
-import type { Project } from "@/src/types/Project";
-
-function toneClass(tone?: Project["tone"]) {
-  switch (tone) {
-    case "cream":
-      return "bg-gradient-to-br from-amber-50 to-white";
-    case "mint2":
-      return "bg-gradient-to-br from-violet-50 to-white";
-    case "mint":
-    default:
-      return "bg-gradient-to-br from-slate-50 via-sky-50 to-emerald-50";
-  }
-}
+import { toneClass } from "@/src/utils/tone";
 
 export default function ProjectsSection() {
   return (
@@ -64,7 +52,7 @@ export default function ProjectsSection() {
                     </div>
 
                     <div className="mt-8 flex items-center gap-3 transition-transform duration-300 group-hover:-translate-y-px motion-reduce:transition-none">
-                      <Link href={p.detailHref}>
+                      <Link href={`/project/${p.id}`}>
                         <Button>자세히 보기 →</Button>
                       </Link>
 
