@@ -75,7 +75,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-xs text-slate-500">GitHub</p>
-                    <p className="text-sm font-semibold text-slate-900">https://github.com/jyjs01</p>
+                    <p className="text-sm font-semibold text-slate-900">github.com/jyjs01</p>
                   </div>
                 </div>
               </div>

@@ -95,7 +95,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{i
         <section className="pb-12">
           <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm">
             <div className="relative aspect-16/6 w-full">
-              <Image src={project.mainImage.src} alt={project.mainImage.alt} fill className="object-cover" priority />
+              <Image src={project.mainImage.src} alt={project.mainImage.alt} fill className="object-center" priority />
             </div>
           </div>
         </section>

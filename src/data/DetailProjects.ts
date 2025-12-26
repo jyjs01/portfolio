@@ -61,4 +61,54 @@ export const DETAIL_PROJECTS: DetailProject[] = [
       },
     ],
   },
+
+  {
+    id: "courseplate",
+    title: "CoursePlate",
+    description:
+      "여행지에서 사용자의 음식 취향을 설문으로 수집하고, 결과를 바탕으로 음식점을 필터링·추천해 코스를 제안하는 모바일 앱입니다. Naver Maps API를 연동해 추천 음식점을 지도에서 확인하고, 리뷰 작성까지 이어지는 흐름을 구현했습니다.",
+    tags: ["React Native(Expo)", "Naver Maps API", "Spring", "Flask", "MongoDB"],
+    period: "2025.03.04 - 2025.06.10",
+    role: "프론트엔드 개발 (기여도 50%, FE-BE 연동 70%)",
+    team: "4인 팀 프로젝트",
+    tone: "2",
+
+    githubUrl: "https://github.com/Course-Plate/CP_Final",
+
+    mainImage: { src: "/courseplate/CoursePlate.png", alt: "CoursePlate 메인 화면" },
+
+    features: [
+      "여행 지역 선택",
+      "음식 취향 설문 및 결과 기반 필터링",
+      "추천 음식점 지도 마킹 및 코스 추천",
+      "리뷰 작성",
+    ],
+
+    screenshots: [
+      { src: "/courseplate/CoursePlate6.png", alt: "스크린샷 1", span: "col-span-1" },
+      { src: "/courseplate/CoursePlate7.png", alt: "스크린샷 2", span: "col-span-1" },
+      { src: "/courseplate/CoursePlate1.png", alt: "스크린샷 3", span: "col-span-1" },
+      { src: "/courseplate/CoursePlate2.png", alt: "스크린샷 4", span: "col-span-1" },
+      { src: "/courseplate/CoursePlate3.png", alt: "스크린샷 5", span: "col-span-1" },
+    ],
+
+    techStack: [
+      { title: "Frontend", items: ["React Native(Expo)", "JavaScript", "AsyncStorage", "Axios"] },
+      { title: "Backend / DB", items: ["Spring", "Flask", "MongoDB"] },
+      { title: "Styling", items: ["StyleSheet"] },
+      { title: "API", items: ["Naver Maps API", "Naver Search API", "coolSMS"] },
+      { title: "Tools", items: ["Git", "IntelliJ IDEA", ] },
+    ],
+
+    challengePairs: [
+      {
+        challenge: "React Native에서 Naver Maps API 연동 시 지도 로드 실패",
+        solution: "네이티브 라이브러리 설치 + AndroidManifest/Gradle 설정을 반영해 지도 로드 정상화",
+      },
+      {
+        challenge: "Expo Managed Workflow에서 네이티브 설정 접근 제한",
+        solution: "Expo Bare Workflow로 전환 후 네이티브 설정을 적용해 마커 표시 기능까지 구현",
+      },
+    ],
+  },
 ];

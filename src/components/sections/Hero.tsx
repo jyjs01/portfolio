@@ -44,8 +44,10 @@ export default function Hero() {
             <span>duawodud12@naver.com</span>
           </div>
           <div className="inline-flex items-center gap-2">
-            <Github className="h-4 w-4" />
-            <span>github.com/jyjs01</span>
+            <Link href={"https://github.com/jyjs01"} className="flex flex-row">
+              <Github className="h-4 w-4 mr-1" />
+              <span>github.com/jyjs01</span>
+            </Link>
           </div>
           <div className="inline-flex items-center gap-2">
             <MapPin className="h-4 w-4" />
