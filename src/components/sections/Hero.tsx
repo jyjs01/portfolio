@@ -2,12 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Mail, Github, MapPin, ArrowDown } from "lucide-react";
 import Button from "@/src/components/ui/Button";
 import Container from "@/src/components/ui/Container";
 
 export default function Hero() {
   const [showArrow, setShowArrow] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const update = () => {
@@ -18,6 +22,31 @@ export default function Hero() {
     window.addEventListener("scroll", update, { passive: true });
     return () => window.removeEventListener("scroll", update);
   }, []);
+
+  const scrollToId = (id: "projects" | "contact") => {
+  // 다른 페이지면 먼저 홈으로 이동한 뒤 스크롤
+  if (pathname !== "/") {
+    sessionStorage.setItem("pendingScrollId", id);
+    router.push("/");
+    return;
+  }
+
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+  useEffect(() => {
+    // 홈으로 온 직후 pending scroll 처리
+    if (pathname !== "/") return;
+    const id = sessionStorage.getItem("pendingScrollId") as "projects" | "contact" | null;
+    if (!id) return;
+
+    sessionStorage.removeItem("pendingScrollId");
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, [pathname]);
 
   return (
     <section className="relative min-h-screen bg-white">
@@ -45,7 +74,7 @@ export default function Hero() {
           </div>
           <div className="inline-flex items-center gap-2">
             <Link href={"https://github.com/jyjs01"} className="flex flex-row">
-              <Github className="h-4 w-4 mr-1" />
+              <Github className="mr-1 h-4 w-4" />
               <span>github.com/jyjs01</span>
             </Link>
           </div>
@@ -56,12 +85,10 @@ export default function Hero() {
         </div>
 
         <div className="mt-10 flex items-center justify-center gap-3">
-          <Link href="#projects">
-            <Button>프로젝트 보기</Button>
-          </Link>
-          <Link href="#contact">
-            <Button variant="outline">연락하기</Button>
-          </Link>
+          <Button onClick={() => scrollToId("projects")}>프로젝트 보기</Button>
+          <Button variant="outline" onClick={() => scrollToId("contact")}>
+            연락하기
+          </Button>
         </div>
       </Container>
 
