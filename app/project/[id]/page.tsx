@@ -9,6 +9,7 @@ import TroubleCard from "@/src/components/project/TroubleCard";
 import WorkSectionsCard from "@/src/components/project/WorkSectionsCard";
 import { toneClass, tonePageBg } from "@/src/utils/tone";
 import ScreenshotGallery from "@/src/components/project/ScreenshotGallery";
+import HomeScrollLink from "@/src/components/ui/HomeScrollLink";
 
 export default async function ProjectDetailPage({ params }: { params: Promise<{id: string}> }) {
   const { id } = await params;
@@ -166,21 +167,21 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{i
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link
-              href={"/#projects"}
+            <HomeScrollLink
+              toId="projects"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-slate-950"
             >
               <ArrowLeft className="h-4 w-4" />
               다른 프로젝트 보기
-            </Link>
+            </HomeScrollLink>
 
-            <Link
-              href={"/#contact"}
+            <HomeScrollLink
+              toId="contact"
               className="inline-flex items-center justify-center gap-2 rounded-xl bg-emerald-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
             >
               <Mail className="h-4 w-4" />
               연락하기
-            </Link>
+            </HomeScrollLink>
           </div>
         </section>
       </div>

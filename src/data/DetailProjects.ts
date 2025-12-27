@@ -103,6 +103,11 @@ export const DETAIL_PROJECTS: DetailProject[] = [
           "\"npx fix-react2shell-next\" 명령을 통해 보안 패치가 적용된 버전인 16.0.10으로 업데이트했습니다. \n" +
           "마지막으로 재배포하여 빌드 실패를 해결하고 배포를 안정화했습니다.",
 
+        compare: {
+          before: { src: "/jobtracker/CVE.png", alt: "CVE 에러"},
+          after: { src: "/jobtracker/BuildSuccess.png", alt: "빌드 성공" },
+        },
+
         learnings: [
           "배포 실패 시 로컬과 배포 환경 차이를 고려해 빌드 로그부터 확인하는 습관을 갖게 됨",
           "CVE가 단순 경고가 아니라 배포 차단으로 이어질 수 있어, 보안 패치 적용과 버전 관리가 필수임을 알게 됨",
@@ -201,6 +206,11 @@ export const DETAIL_PROJECTS: DetailProject[] = [
           "하지만 당시 프로젝트 환경에서는 네이티브 설정 파일을 직접 수정할 수 없는 문제가 지속되었습니다. \n\n" +
           "관련 이슈를 검색한 뒤, 현재 개발 환경인 Expo Managed Workflow에서는 필요한 네이티브 설정 적용에 제약이 있다는 점을 확인했습니다. \n" +
           "프로젝트의 현재 워크플로우를 점검한 후 Expo Bare Workflow로 전환했고, 이후 네이티브 라이브러리 설치 및 AndroidManifest/Gradle 설정을 반영하여 지도 로드를 정상화했습니다.",
+
+        compare: {
+          before: { src: "/courseplate/rn_navermap.png", alt: "navermap", caption: "출처: https://rnnavermap.mjstudio.net/docs"},
+          after: { src: "/courseplate/CoursePlate7.png", alt: "success", caption: "연동 완료"},
+        },
 
         learnings: [
           "지도 SDK 연동은 네이티브 설정이 필요한 경우가 많아, 요구사항 단계에서 워크플로우(Managed/Bare) 적합성을 먼저 검토해야 함을 알게 됨",

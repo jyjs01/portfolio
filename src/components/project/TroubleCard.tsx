@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { AlertCircle, Sparkles, GitCompareArrows, GraduationCap } from "lucide-react";
+import { AlertCircle, Sparkles, GraduationCap } from "lucide-react";
 
 function TextBlock({ text }: { text: string }) {
   return (
@@ -45,23 +45,16 @@ export default function TroubleCard({
       </div>
       <TextBlock text={solution} />
 
-      {/* 이전 코드와 비교 (옵션) */}
+      {/* 이전과 비교 (옵션) */}
       {item.compare && (
         <div className="mt-8">
-          <div className="flex items-center gap-2">
-            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-slate-100 text-slate-700">
-              <GitCompareArrows className="h-4 w-4" />
-            </span>
-            <h3 className="text-base font-extrabold text-slate-900">이전 코드와 비교</h3>
-          </div>
-
           <div className="mt-4 grid grid-cols-1 gap-5 md:grid-cols-2">
             <div className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50">
               <div className="relative aspect-16/10 w-full">
                 <Image src={item.compare.before.src} alt={item.compare.before.alt} fill className="object-contain p-3" />
               </div>
               {item.compare.before.caption && (
-                <p className="border-t border-slate-200 px-4 py-3 text-xs font-medium text-slate-600">
+                <p className="border-t border-slate-200 px-4 py-3 text-xs text-center font-medium text-slate-600">
                   {item.compare.before.caption}
                 </p>
               )}
@@ -72,7 +65,7 @@ export default function TroubleCard({
                 <Image src={item.compare.after.src} alt={item.compare.after.alt} fill className="object-contain p-3" />
               </div>
               {item.compare.after.caption && (
-                <p className="border-t border-slate-200 px-4 py-3 text-xs font-medium text-slate-600">
+                <p className="border-t border-slate-200 px-4 py-3 text-xs text-center font-medium text-slate-600">
                   {item.compare.after.caption}
                 </p>
               )}
