@@ -3,9 +3,22 @@ export type TechCategory = {
   items: string[];
 };
 
+export type WorkSection = {
+  title: string;
+  icon?: "ui" | "map" | "server" | "api" | "design" | "etc";
+  items: string[];
+};
+
 export type ChallengePair = {
-  challenge: string;
-  solution: string;
+  background: string; // "문제 배경"에 보여줄 상세 설명 (없으면 challenge 사용)
+  solutionDetail: string; // "해결 방법" 상세 (없으면 solution 사용)
+
+  compare?: {
+    before: { src: string; alt: string; caption?: string };
+    after: { src: string; alt: string; caption?: string };
+  };
+
+  learnings: string[]; // "해당 경험을 통해 알게된 점"
 };
 
 export type DetailProject = {
@@ -21,10 +34,10 @@ export type DetailProject = {
   githubUrl?: string;
   demoUrl?: string;
 
-  mainImage: { src: string; alt: string };
   features: string[];
+  workSections?: WorkSection[];
 
-  screenshots: Array<{ src: string; alt: string; span?: "col-span-2" | "col-span-1" }>;
+  screenshots: Array<{ src: string; thumbSrc?: string; alt: string; span?: "col-span-2" | "col-span-1" }>;
   techStack: TechCategory[];
 
   challengePairs: ChallengePair[];

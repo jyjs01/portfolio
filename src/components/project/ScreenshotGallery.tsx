@@ -7,6 +7,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 type Shot = {
   src: string;
+  thumbSrc?: string;
   alt: string;
   span?: string; // "md:col-span-2"
 };
@@ -42,6 +43,20 @@ export default function ScreenshotGallery({ screenshots }: { screenshots: Shot[]
     return () => window.removeEventListener("keydown", onKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, hasMany, screenshots.length]);
+
+  useEffect(() => {
+    if (!open) return;
+    const preload = (src: string) => {
+      const img = new window.Image();
+      img.src = src;
+    };
+    preload(screenshots[idx].src);
+    if (hasMany) {
+      preload(screenshots[(idx + 1) % screenshots.length].src);
+      preload(screenshots[(idx - 1 + screenshots.length) % screenshots.length].src);
+    }
+  }, [open, idx, hasMany, screenshots]);
+
 
   return (
     <>
@@ -85,7 +100,7 @@ export default function ScreenshotGallery({ screenshots }: { screenshots: Shot[]
             >
                 <div className="relative aspect-16/10 w-full bg-slate-50">
                     <Image
-                        src={s.src}
+                        src={s.thumbSrc ?? s.src}
                         alt={s.alt}
                         fill
                         className="object-contain p-4 transition-transform duration-300 group-hover:scale-[1.01]"
