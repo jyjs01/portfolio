@@ -1,6 +1,7 @@
 import type { DetailProject } from "@/src/types/DetailProject";
 
 export const DETAIL_PROJECTS: DetailProject[] = [
+  // JobTracker
   {
     id: "jobtracker",
     title: "JobTracker",
@@ -103,10 +104,13 @@ export const DETAIL_PROJECTS: DetailProject[] = [
           "\"npx fix-react2shell-next\" 명령을 통해 보안 패치가 적용된 버전인 16.0.10으로 업데이트했습니다. \n" +
           "마지막으로 재배포하여 빌드 실패를 해결하고 배포를 안정화했습니다.",
 
-        compare: {
-          before: { src: "/jobtracker/CVE.png", alt: "CVE 에러"},
-          after: { src: "/jobtracker/BuildSuccess.png", alt: "빌드 성공" },
-        },
+        compare: [
+          {
+            title: "배포 에러",
+            before: { src: "/jobtracker/CVE.png", alt: "CVE 에러"},
+            after: { src: "/jobtracker/BuildSuccess.png", alt: "빌드 성공" },
+          }
+        ],
 
         learnings: [
           "배포 실패 시 로컬과 배포 환경 차이를 고려해 빌드 로그부터 확인하는 습관을 갖게 됨",
@@ -116,6 +120,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     ],
   },
 
+  // CoursePlate
   {
     id: "courseplate",
     title: "CoursePlate",
@@ -123,7 +128,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
       "여행지에서 사용자의 음식 취향을 설문으로 수집하고, 결과를 바탕으로 음식점을 필터링·추천해 코스를 제안하는 모바일 앱입니다. Naver Maps API를 연동해 추천 음식점을 지도에서 확인하고, 리뷰 작성까지 이어지는 흐름을 구현했습니다.",
     tags: ["React Native(Expo)", "Naver Maps API", "Spring", "Flask", "MongoDB"],
     period: "2025.03.04 - 2025.06.10",
-    role: "프론트엔드 개발 (기여도 50%)",
+    role: "프론트엔드 개발 (FE 50%)",
     team: "4인 팀 프로젝트",
     tone: "2",
 
@@ -207,14 +212,168 @@ export const DETAIL_PROJECTS: DetailProject[] = [
           "관련 이슈를 검색한 뒤, 현재 개발 환경인 Expo Managed Workflow에서는 필요한 네이티브 설정 적용에 제약이 있다는 점을 확인했습니다. \n" +
           "프로젝트의 현재 워크플로우를 점검한 후 Expo Bare Workflow로 전환했고, 이후 네이티브 라이브러리 설치 및 AndroidManifest/Gradle 설정을 반영하여 지도 로드를 정상화했습니다.",
 
-        compare: {
-          before: { src: "/courseplate/rn_navermap.png", alt: "navermap", caption: "출처: https://rnnavermap.mjstudio.net/docs"},
-          after: { src: "/courseplate/CoursePlate7.png", alt: "success", caption: "연동 완료"},
-        },
+        compare: [
+          {
+            title: "네이버 지도 연동 오류",
+            before: { src: "/courseplate/rn_navermap.png", alt: "navermap", caption: "Expo Managed 연동 불가(공식 문서)"},
+            after: { src: "/courseplate/CoursePlate7.png", alt: "success", caption: "연동 완료"},
+          }
+        ],
 
         learnings: [
           "지도 SDK 연동은 네이티브 설정이 필요한 경우가 많아, 요구사항 단계에서 워크플로우(Managed/Bare) 적합성을 먼저 검토해야 함을 알게 됨",
           "에러 로그 → 검색 → 현재 환경(워크플로우/설정) 확인 → 해결 적용의 흐름으로 문제를 좁혀가는 습관을 갖게 됨",
+        ],
+      },
+    ],
+  },
+
+  // NoticeCounsel
+  {
+    id: "noticecounsel",
+    title: "NoticeCounsel",
+    description:
+      "학사 상담을 예약·관리할 수 있는 모바일 앱입니다. 상담 신청/일정 확인 흐름을 단순하게 구성했고, 상담 내용은 요약 기능으로 핵심만 빠르게 확인할 수 있도록 했습니다.",
+    tags: ["Android(Java)", "Node.js", "KoBART Summarizer API(Hugging Face)", "MySQL", "Firebase Cloud Messaging"],
+    period: "2024.09.02 ~ 2024.12.16",
+    role: "풀스택 개발(FE 50%, BE 70%)",
+    team: "3인 팀 프로젝트",
+    tone: "3",
+
+    githubUrl: "https://github.com/jyjs01/Notice-Counsel",
+
+    features: [
+      "상담 예약 및 일정 관리(학생 예약 / 교수 가능 시간 설정·일정 확인)",
+      "상담 기록 작성 및 기록 조회",
+      "상담 내용 자동 요약(Hugging Face API) 및 요약 결과 저장",
+      "이전 상담 요약/기록 내역 조회",
+      "공지사항 전달 시스템(관리자 작성 → 전체 학생/교수에게 전달)",
+      "푸시 알림 기능(연동 보완 중)",
+    ],
+
+    workSections: [
+      {
+        title: "UI/UX 기획 및 화면 설계",
+        icon: "design",
+        items: [
+          "Figma로 주요 화면 와이어프레임/레이아웃 설계",
+        ],
+      },
+      {
+        title: "상담 예약/일정 화면 개발",
+        icon: "ui",
+        items: [
+          "학생: 상담 가능 시간 조회 후 예약 신청 UI 구현",
+          "교수: 상담 가능 시간 설정 및 예약 일정 확인 UI 구현",
+          "예약 상태(대기/확정/완료)에 따른 화면 분기 처리",
+        ],
+      },
+      {
+        title: "상담 기록 및 요약 조회 화면 개발",
+        icon: "ui",
+        items: [
+          "상담 기록 작성/조회 화면 UI 구현",
+          "요약 결과 확인 및 이전 요약/기록 내역 조회 UI 구현",
+          "목록/상세 화면에서 로딩·빈 상태 UI 처리",
+        ],
+      },
+      {
+        title: "공지사항 화면 개발",
+        icon: "ui",
+        items: [
+          "공지사항 목록/상세 UI 구현 및 실시간 확인 흐름 구성",
+          "관리자: 공지사항 작성/전달 UI 구현(권한 기반 노출)",
+        ],
+      },
+      {
+        title: "백엔드 API 및 DB 연동",
+        icon: "api",
+        items: [
+          "Node.js 기반 REST API 설계 및 CRUD 구현(예약/기록/요약/공지)",
+          "MySQL 테이블 설계 및 관계 정리(사용자/예약/기록/요약/공지)",
+          "Android 앱에서 Retrofit으로 API 연동 및 에러/로딩 처리",
+        ],
+      },
+      {
+        title: "상담 내용 요약 기능 구현",
+        icon: "etc",
+        items: [
+          "KoBART Summarizer 기반 상담 내용 요약 기능 연동",
+          "요약 요청/응답 흐름 설계(원문 저장 → 요약 요청 → 결과 저장)",
+        ],
+      },
+    ],
+
+    screenshots: [
+      {
+        src: "/noticecounsel/NoticeCounsel1.png",
+        thumbSrc: "/noticecounsel/thumbs/NoticeCounsel1.webp",
+        alt: "NoticeCounsel - 로그인 화면",
+        span: "col-span-1",
+      },
+      {
+        src: "/noticecounsel/NoticeCounsel2.png",
+        thumbSrc: "/noticecounsel/thumbs/NoticeCounsel2.webp",
+        alt: "NoticeCounsel - 상담 예약 화면",
+        span: "col-span-1",
+      },
+      {
+        src: "/noticecounsel/NoticeCounsel3.png",
+        thumbSrc: "/noticecounsel/thumbs/NoticeCounsel3.webp",
+        alt: "NoticeCounsel - 내 예약 목록 화면",
+        span: "col-span-1",
+      },
+      {
+        src: "/noticecounsel/NoticeCounsel4.png",
+        thumbSrc: "/noticecounsel/thumbs/NoticeCounsel4.webp",
+        alt: "NoticeCounsel - 상담 상세/기록 화면",
+        span: "col-span-1",
+      },
+      {
+        src: "/noticecounsel/NoticeCounsel5.png",
+        thumbSrc: "/noticecounsel/thumbs/NoticeCounsel5.webp",
+        alt: "NoticeCounsel - 요약 결과 화면",
+        span: "col-span-2",
+      },
+    ],
+
+    techStack: [
+      { title: "Frontend", items: ["Android(Java)", "Retrofit"] },
+      { title: "Backend / DB", items: ["Node.js + Express", "Axios", "MySQL"] },
+      { title: "Styling", items: ["Android XML Layout(Style/Theme)"] },
+      { title: "API", items: ["KoBART Summarizer(Hugging Face)", "Firebase Cloud Messaging"] },
+      { title: "Tools", items: ["Git", "Slack", "Android Studio", "VS Code"]},
+    ],
+
+    challengePairs: [
+      {
+        background:
+          "상담 내용을 API를 통해 요약하면 입력이 길어질수록 반복 문장이 섞이는 문제가 발생했습니다.",
+        solutionDetail:
+          "요약 결과에서 동일 문장이 여러 번 반복 생성되는 문제가 발생했습니다. \n" + 
+          "특히 긴 입력을 여러 번 요청하거나, 모델이 유사한 문장을 재생성할 때 결과가 일정 횟수 반복되어 가독성이 크게 떨어졌습니다. \n\n" +
+          "해결을 위해 요약 결과에 후처리 함수를 적용했습니다. \n" +
+          "removeDuplicateSentences(text)는 \n" +
+          "1) 마침표(.) 기준으로 문장을 분리하고(trim) 빈 문장을 제거한 뒤, \n" +
+          "2) 이미 나온 문장은 제외하고 처음 등장한 문장만 uniqueSentences 배열에 저장합니다. \n" +
+          "3) 마지막으로 uniqueSentences를 다시 “. ”로 이어 붙여 최종 결과를 만들고 끝에 마침표를 붙입니다. \n\n" +
+          "이를 통해 같은 문장이 반복돼도 최초 1회만 남기고 제거해 요약 결과의 가독성을 개선했습니다.",
+        
+        images: [
+          { src: "/noticecounsel/removeDuplicate.png", alt: "반복 제거 함수", caption: "반복 제거 함수" }
+        ],
+        compare: [
+          {
+            title: "반복 현상 발생",
+            before: { src: "/noticecounsel/summarize.png", alt: "반복 문장 출력", caption: "초기 테스트 결과 반복 발생"},
+            after: { src: "/noticecounsel/summarize_remove.png", alt: "반복 제거", caption: "함수 적용 후 반복 문장 제거" },
+          },
+        ],
+        
+        learnings: [
+          "요약 품질은 모델뿐 아니라 입력 데이터의 길이/구조에 크게 영향을 받는다.",
+          "사용자 경험 관점에서 결과 품질과 응답 시간을 함께 관리해야 한다.",
+          "문제 재현 → 작은 단위 실험 → 점진 적용 방식이 효과적이었다.",
         ],
       },
     ],

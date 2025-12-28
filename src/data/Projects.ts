@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "CoursePlate",
     desc:
       "여행지에서 취향 설문을 바탕으로 맛집을 추천하고 코스를 제안하는 모바일 앱입니다. Naver Maps API 연동으로 추천 음식점을 지도에서 바로 확인할 수 있습니다.",
-    tags: ["React Native", "Styled-Components", "Naver Maps API", "Spring", "Flask", "MongoDB"],
+    tags: ["React Native", "Naver Maps API", "Spring", "Flask", "MongoDB"],
     imageSrc: "/courseplate/CoursePlate.png",
     githubHref: "https://github.com/Course-Plate/CP_Final",
     tone: "2",
@@ -26,7 +26,7 @@ export const projects: Project[] = [
     title: "Notice Counsel",
     desc:
       "상담 예약·공지·질문 기능을 갖춘 학사 정보 관리 앱입니다. 상담 내용을 KoBART Summarizer API로 자동 요약해 핵심만 빠르게 확인할 수 있도록 개선했습니다.",
-    tags: ["Android Studio", "Node.js", "KoBART Summarizer API(Hugging Face)", "MySQL", "Firebase Cloud Message"],
+    tags: ["Android(Java)", "Node.js", "KoBART Summarizer API(Hugging Face)", "MySQL", "Firebase Cloud Messaging"],
     imageSrc: "/noticecounsel/NoticeCounsel.png",
     githubHref: "https://github.com/jyjs01/Notice-Counsel",
     tone: "3",

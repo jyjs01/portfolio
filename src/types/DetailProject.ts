@@ -9,14 +9,21 @@ export type WorkSection = {
   items: string[];
 };
 
+export type TroubleImage = { src: string; alt: string; caption?: string };
+export type CompareImage = { src: string; alt: string; caption?: string };
+
+export type CompareSet = {
+  title?: string; // 선택: "로딩 화면", "중복 제거 전/후" 같은 소제목
+  before: CompareImage;
+  after: CompareImage;
+};
+
 export type ChallengePair = {
   background: string; // "문제 배경"에 보여줄 상세 설명 (없으면 challenge 사용)
   solutionDetail: string; // "해결 방법" 상세 (없으면 solution 사용)
 
-  compare?: {
-    before: { src: string; alt: string; caption?: string };
-    after: { src: string; alt: string; caption?: string };
-  };
+  images?: TroubleImage[];
+  compare?: CompareSet[];
 
   learnings: string[]; // "해당 경험을 통해 알게된 점"
 };
