@@ -6,7 +6,7 @@ export const projects: Project[] = [
     title: "JobTracker",
     desc:
       "채용 공고, 지원 이력, 면접/과제 일정을 한 곳에서 관리하는 취업 준비 관리 서비스입니다. 대시보드와 필터로 마감·일정 D-day를 빠르게 확인할 수 있습니다.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST API", "MongoDB"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     imageSrc: "/jobtracker/JT_dashboard.png",
     githubHref: "https://github.com/jyjs01/job_tracker",
     tone: "1",

@@ -7,7 +7,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     title: "JobTracker",
     description:
       "채용 공고 등록부터 지원 이력, 면접/과제 일정까지 취업 준비 흐름을 한 곳에서 관리하는 서비스입니다. 대시보드와 필터를 통해 마감·일정 D-day를 빠르게 확인하고 준비 과정을 체계적으로 정리할 수 있습니다.",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "REST API", "MongoDB"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "MongoDB"],
     period: "2025.12.01 - 2025.12.27",
     role: "풀스택 개발",
     team: "개인 프로젝트",
@@ -82,7 +82,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     ],
 
     techStack: [
-      { title: "Frontend", items: ["Next.js (App Router)", "TypeScript", "Axios"] },
+      { title: "Frontend", items: ["Next.js (App Router)", "TypeScript", "axios"] },
       { title: "Backend / DB", items: ["Next.js Route Handlers (API)", "MongoDB"] },
       { title: "Styling", items: ["Tailwind CSS", "lucide-react"] },
       { title: "Validation", items: ["Zod"] },
@@ -194,7 +194,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     ],
     
     techStack: [
-      { title: "Frontend", items: ["React Native(Expo)", "JavaScript", "AsyncStorage", "Axios"] },
+      { title: "Frontend", items: ["React Native(Expo)", "JavaScript", "AsyncStorage", "axios"] },
       { title: "Backend / DB", items: ["Spring", "Flask", "MongoDB"] },
       { title: "Styling", items: ["StyleSheet"] },
       { title: "API", items: ["Naver Maps API", "Naver Search API", "coolSMS"] },
@@ -339,7 +339,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
 
     techStack: [
       { title: "Frontend", items: ["Android(Java)", "Retrofit"] },
-      { title: "Backend / DB", items: ["Node.js + Express", "Axios", "MySQL"] },
+      { title: "Backend / DB", items: ["Node.js + Express", "axios", "MySQL"] },
       { title: "Styling", items: ["Android XML Layout(Style/Theme)"] },
       { title: "API", items: ["KoBART Summarizer(Hugging Face)", "Firebase Cloud Messaging"] },
       { title: "Tools", items: ["Git", "Slack", "Android Studio", "VS Code"]},
