@@ -64,8 +64,7 @@ export async function sendContactEmail(payload: ContactPayload) {
         <p style="margin:0 0 6px;"><b>이름</b>: ${escapeHtml(name)}</p>
         <p style="margin:0 0 12px;"><b>이메일</b>: ${escapeHtml(email)}</p>
         <p style="margin:0 0 6px;"><b>메시지</b></p>
-        <pre style="margin:0; white-space:pre-wrap; line-height:1.6; padding:12px; border:1px solid #e2e8f0; border-radius:12px; background:#f8fafc;">
-          ${escapeHtml(message)}
+        <pre style="margin:0; white-space:pre-wrap; line-height:1.6; padding:12px; border:1px solid #e2e8f0; border-radius:12px; background:#f8fafc;">${escapeHtml(message)}
         </pre>
         <p style="margin:12px 0 0; color:#64748b; font-size:12px;">
           Reply-To로 설정되어 있어 답장하면 작성자 이메일로 회신됩니다.
