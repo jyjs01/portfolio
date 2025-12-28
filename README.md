@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Next.js(App Router)로 제작한 개인 포트폴리오 웹사이트입니다.  
+프로젝트 소개/상세 페이지, 스크린샷 확대 갤러리, 트러블슈팅 카드, 메일 문의 폼까지 포함되어 있습니다.
 
-First, run the development server:
+## 주요 기능
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **메인 섹션**
+  - 버튼 클릭 시 페이지 이동 없이 섹션으로 부드럽게 스크롤
+- **프로젝트 목록 / 상세 페이지**
+  - 프로젝트 태그, 기간/역할/팀 구성 정보 제공
+  - 주요 기능, 수행 업무(기여), 트러블슈팅, 기술 스택을 구조화해 표시
+- **스크린샷 갤러리**
+  - 썸네일 리스트 가로 스크롤
+  - 클릭 시 모달 확대 + 키보드(←/→/ESC) 지원
+  - 이미지 프리로드 및 로딩 UI 제공
+- **트러블슈팅 카드**
+  - 문제 배경 / 원인 및 해결 / 알게 된 점 구성
+  - 카드 내 이미지 클릭 시 스크린샷처럼 확대 모달 제공
+  - 일반 이미지 그룹 / 비교 이미지 그룹을 분리해 **좌우 이동이 섞이지 않게** 처리
+- **연락 폼**
+  - 프론트 유효성 검증(이름/이메일/메시지)
+  - Nodemailer로 메일 발송
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 기술 스택
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**
+  - Next.js (App Router)
+  - TypeScript
+  - Tailwind CSS
+- **UI**
+  - Headless UI (Dialog)
+  - lucide-react (icons)
+- **Network**
+  - axios
+- **Email**
+  - nodemailer
+- **Image**
+  - next/image
+  - sharp (썸네일 webp 생성용)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
