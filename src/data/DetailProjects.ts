@@ -14,7 +14,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     tone: "1",
 
     githubUrl: "https://github.com/jyjs01/job_tracker",
-    demoUrl: "https://job-tracker-iota-pied.vercel.app/",
+    demoUrl: "https://job-tracker-jy.vercel.app/",
 
     features: [
       "채용 공고 등록 및 관리 (회사/포지션/마감일/URL/메모)",
