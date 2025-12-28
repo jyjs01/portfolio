@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "CoursePlate",
     desc:
       "여행지에서 취향 설문을 바탕으로 맛집을 추천하고 코스를 제안하는 모바일 앱입니다. Naver Maps API 연동으로 추천 음식점을 지도에서 바로 확인할 수 있습니다.",
-    tags: ["React Native", "Naver Maps API", "Spring", "Flask", "MongoDB"],
+    tags: ["React Native(Expo)", "Naver Maps API", "Spring", "Flask", "MongoDB"],
     imageSrc: "/courseplate/CoursePlate.png",
     githubHref: "https://github.com/Course-Plate/CP_Final",
     tone: "2",

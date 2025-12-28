@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "JaeYoung",
   description: "portfolio by JY",
+  icons: {
+    icon: "/JY.png"
+  }
 };
 
 export default function RootLayout({

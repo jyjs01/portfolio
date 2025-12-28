@@ -51,10 +51,6 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen bg-white">
       <Container className="flex min-h-[92vh] flex-col items-center justify-center py-16 text-center">
-        <div className="mb-8 flex h-16 w-16 items-center justify-center rounded-full bg-slate-900 text-lg font-bold text-white">
-          JY
-        </div>
-
         <h1 className="text-3xl font-extrabold tracking-tight text-slate-900 md:text-5xl">
           안녕하세요,
           <br />
