@@ -49,7 +49,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{i
                 className="inline-flex items-center gap-2 rounded-xl bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-emerald-700"
               >
                 <ExternalLink className="h-4 w-4" />
-                라이브 데모
+                데모
               </a>
             )}
           </div>

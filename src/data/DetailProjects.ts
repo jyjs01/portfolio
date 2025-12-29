@@ -133,6 +133,7 @@ export const DETAIL_PROJECTS: DetailProject[] = [
     tone: "2",
 
     githubUrl: "https://github.com/Course-Plate/CP_Final",
+    demoUrl: "https://youtu.be/8lUTUYlNObk",
 
     features: [
       "여행 지역 선택",
